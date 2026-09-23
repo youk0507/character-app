@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>キャラクター</title>
+    <title>ゆっくり木本</title>
 
     <style>
         body {
@@ -12,6 +12,33 @@
             background: white;
             font-family: sans-serif;
             text-align: center;
+        }
+
+        /* パスワード画面 */
+        #passwordScreen {
+            margin-top: 100px;
+        }
+
+        #passwordScreen input {
+            padding: 12px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 250px;
+        }
+
+        #passwordScreen button {
+            margin-top: 20px;
+        }
+
+        #error {
+            color: red;
+            font-size: 18px;
+        }
+
+        /* サイト本体 */
+        #site {
+            display: none;
         }
 
         h1 {
@@ -51,60 +78,117 @@
 
 <body>
 
-    <h1>ゆっくり木本</h1>
+    <!-- パスワード画面 -->
+    <div id="passwordScreen">
 
-   <img src="character.png" id="character" class="character">
+        <h2>パスワードを入力してください</h2>
 
-    <div class="message" id="message">
-        ボタンを押してね！
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="パスワード"
+        >
+
+        <br>
+
+        <button onclick="checkPassword()">入る</button>
+
+        <p id="error"></p>
+
     </div>
 
-    <button onclick="speak()">話す！</button>
+
+    <!-- サイト本体 -->
+    <div id="site">
+
+        <h1>ゆっくり木本</h1>
+
+        <img src="character.png" id="character" class="character">
+
+        <div class="message" id="message">
+            ボタンを押してね！
+        </div>
+
+        <button onclick="speak()">話す！</button>
+
+    </div>
+
 
     <script>
-       const messages = [
-    {
-        text: "結局生茶が一番おいしいんだよね",
-        image: "character.png"
-    },
-    {
-        text: "呉中なんでしゃーない",
-        image: "character3.png"
-    },
-    {
-        text: "課題？終わってないけど",
-        image: "character3.png"
-    },
-    {
-        text: "そうすか",
-        image: "character3.png"
-    },
-    {
-        text: "今起きました",
-        image: "character3.png"
-    },
-    {
-        text: "良い…！",
-        image: "character2.png"
-    },
-    {
-        text: "綾鷹薄いんだよね",
-        image: "character3.png"
-    }
-];
-     
-   function speak() {
-    const random =
-        Math.floor(Math.random() * messages.length);
 
-    const selected = messages[random];
+        // パスワード
+        const PASSWORD = "kimoto123";
 
-    document.getElementById("message").textContent =
-        selected.text;
 
-    document.getElementById("character").src =
-        selected.image;
-}
+        // パスワード確認
+        function checkPassword() {
+
+            const input =
+                document.getElementById("passwordInput").value;
+
+            if (input === PASSWORD) {
+
+                document.getElementById("passwordScreen").style.display = "none";
+
+                document.getElementById("site").style.display = "block";
+
+            } else {
+
+                document.getElementById("error").textContent =
+                    "パスワードが違います";
+
+            }
+        }
+
+
+        // セリフ
+        const messages = [
+            {
+                text: "結局生茶が一番おいしいんだよね",
+                image: "character.png"
+            },
+            {
+                text: "呉中なんでしゃーない",
+                image: "character3.png"
+            },
+            {
+                text: "課題？終わってないけど",
+                image: "character3.png"
+            },
+            {
+                text: "そうすか",
+                image: "character3.png"
+            },
+            {
+                text: "今起きました",
+                image: "character3.png"
+            },
+            {
+                text: "良い…！",
+                image: "character2.png"
+            },
+            {
+                text: "綾鷹薄いんだよね",
+                image: "character3.png"
+            }
+        ];
+
+
+        // セリフをランダム表示
+        function speak() {
+
+            const random =
+                Math.floor(Math.random() * messages.length);
+
+            const selected = messages[random];
+
+            document.getElementById("message").textContent =
+                selected.text;
+
+            document.getElementById("character").src =
+                selected.image;
+        }
+
     </script>
 
 </body>
