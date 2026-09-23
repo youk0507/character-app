@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャラクター</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        .character {
+            width: 450px;
+            margin-top: 30px;
+        }
+
+        .message {
+            width: 70%;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            font-size: 24px;
+            background: white;
+        }
+
+        button {
+            padding: 15px 50px;
+            font-size: 24px;
+            border: none;
+            border-radius: 30px;
+            background: #dce6f7;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ゆっくり木本</h1>
+
+   <img src="character.png" id="character" class="character">
+
+    <div class="message" id="message">
+        ボタンを押してね！
+    </div>
+
+    <button onclick="speak()">話す！</button>
+
+    <script>
+       const messages = [
+    {
+        text: "結局生茶が一番おいしいんだよね",
+        image: "character.png"
+    },
+    {
+        text: "呉中なんでしゃーない",
+        image: "character3.png"
+    },
+    {
+        text: "課題？終わってないけど",
+        image: "character3.png"
+    },
+    {
+        text: "そうすか",
+        image: "character3.png"
+    },
+    {
+        text: "今起きました",
+        image: "character3.png"
+    },
+    {
+        text: "良い…！",
+        image: "character2.png"
+    },
+    {
+        text: "綾鷹薄いんだよね",
+        image: "character3.png"
+    }
+];
+     
+   function speak() {
+    const random =
+        Math.floor(Math.random() * messages.length);
+
+    const selected = messages[random];
+
+    document.getElementById("message").textContent =
+        selected.text;
+
+    document.getElementById("character").src =
+        selected.image;
+}
+    </script>
+
+</body>
+</html>
